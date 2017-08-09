@@ -18,7 +18,7 @@ class LoginForm extends Component {
             label="email"
             placeholder="youremail@email.net"
             onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.emailValue}
+            value={this.props.email}
           />
         </CardSection>
         <CardSection>
@@ -39,7 +39,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  emailValue: state.auth.email
+  email: state.auth.email
 });
 
 export default connect(mapStateToProps, { emailChanged })(LoginForm);
