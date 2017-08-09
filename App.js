@@ -21,9 +21,22 @@ class App extends Component {
   }
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+     function configureStore(initialState) {
+      const store = createStore(reducers, initialState, applyMiddleware(ReduxThunk));
+
+      if (module.hot) {
+        // Enable Webpack hot module replacement for reducers
+        module.hot.accept('./src/reducers', () => {
+          const nextRootReducer = reducers;
+
+          store.replaceReducer(nextRootReducer);
+      });
+    }
+      return store;
+    }
+
     return (
-      <Provider store={store}>
+      <Provider store={configureStore({})}>
           <LoginForm />
       </Provider>
     );
