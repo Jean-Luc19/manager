@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, password: action.payload };
     case LOGIN_USER_SUCCESS:
       console.log(action.payload);
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload, error: '' };
     case LOGIN_USER_FAIL:
       return { ...state, error: 'Authentication Failed', password: '' };
     default:
