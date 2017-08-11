@@ -3,10 +3,15 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
+// import { StackNavigator } from 'react-navigation';
 import reducers from './src/reducers';
 import LoginForm from './src/components/LoginForm';
 
 class App extends Component {
+
+  static navigationOptions = {
+    title: 'Login Form'
+  }
   componentWillMount() {
     const config = {
       apiKey: 'AIzaSyDyy2jghZ4l4rEPRrmJEGipkQcvhGvjNWA',
