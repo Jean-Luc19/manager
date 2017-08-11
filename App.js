@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 // import { StackNavigator } from 'react-navigation';
 import reducers from './src/reducers';
-import LoginForm from './src/components/LoginForm';
+import { Root } from './src/config/router';
 
 class App extends Component {
 
@@ -42,7 +42,7 @@ class App extends Component {
 
     return (
       <Provider store={configureStore({})}>
-          <LoginForm />
+          <Root />
       </Provider>
     );
   }
