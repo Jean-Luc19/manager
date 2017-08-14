@@ -1,6 +1,11 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import {
+  TabNavigator,
+  StackNavigator,
+  addNavigationHelpers
+ } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
 import EmployeeList from '../components/EmployeeList';
 
@@ -26,3 +31,20 @@ export const Root = StackNavigator({
     screen: Tabs
   }
 });
+
+const RootNavigationWithState = ({ dispatch, nav }) => (
+  <Tabs
+    navigation={
+      addNavigationHelpers({
+        dispatch,
+        state: nav
+      })
+    }
+  />
+);
+
+const mapStateToProps = (state) => ({
+  nav: state.nav
+});
+
+export default connect(mapStateToProps)(RootNavigationWithState);

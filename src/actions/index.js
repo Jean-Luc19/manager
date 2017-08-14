@@ -4,7 +4,8 @@ import { EMAIL_CHANGED,
    PASSWORD_CHANGED,
    LOGIN_USER_SUCCESS,
    LOGIN_USER_FAIL,
-   LOGIN_USER_START
+   LOGIN_USER_START,
+   LOGIN_REDIRECT
  } from './types';
 
 export const emailChanged = (text) => ({
@@ -17,10 +18,11 @@ export const passwordChanged = (text) => ({
   payload: text
 });
 
-export const loginUser = ({ email, password }) => dispatch => {
+export const loginUser = ({ email, password, navigation }) => dispatch => {
   loginUserStart(dispatch);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => loginUserSuccess(dispatch, user))
+    .then(() => loginSuccessRedirect(dispatch, navigation))
     .catch((error) => {
       console.log(error);
       firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -40,6 +42,10 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
+};
+
+const loginSuccessRedirect = (dispatch, navigation) => {
+  navigation.dispatch({ type: LOGIN_REDIRECT });
 };
 
 const loginUserFail = (dispatch) => {

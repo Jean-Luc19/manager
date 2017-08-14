@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 // import { StackNavigator } from 'react-navigation';
 import reducers from './src/reducers';
-import { Root } from './src/config/router';
+import RootNavigationWithState from './src/config/router';
 
 class App extends Component {
 
@@ -42,7 +42,7 @@ class App extends Component {
 
     return (
       <Provider store={configureStore({})}>
-          <Root />
+          <RootNavigationWithState />
       </Provider>
     );
   }
