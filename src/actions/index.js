@@ -1,37 +1,42 @@
 import firebase from 'firebase';
 
-import { EMAIL_CHANGED,
-   PASSWORD_CHANGED,
-   LOGIN_USER_SUCCESS,
-   LOGIN_USER_FAIL,
-   LOGIN_USER_START,
-   LOGIN_REDIRECT
- } from './types';
+import {
+  EMAIL_CHANGED,
+  PASSWORD_CHANGED,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAIL,
+  LOGIN_USER_START,
+  LOGIN_REDIRECT
+} from './types';
 
-export const emailChanged = (text) => ({
+export const emailChanged = text => ({
   type: EMAIL_CHANGED,
   payload: text
 });
 
-export const passwordChanged = (text) => ({
+export const passwordChanged = text => ({
   type: PASSWORD_CHANGED,
   payload: text
 });
 
-export const loginUser = ({ email, password, navigation }) => dispatch => {
+export const loginUser = ({ email, password }) => dispatch => {
   loginUserStart(dispatch);
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
     .then(user => loginUserSuccess(dispatch, user))
-    .then(() => loginSuccessRedirect(dispatch, navigation))
-    .catch((error) => {
+    .then(() => loginSuccessRedirect(dispatch))
+    .catch(error => {
       console.log(error);
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
-      .catch(() => loginUserFail(dispatch));
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(user => loginUserSuccess(dispatch, user))
+        .catch(() => loginUserFail(dispatch));
     });
 };
 
-const loginUserStart = (dispatch) => {
+const loginUserStart = dispatch => {
   dispatch({
     type: LOGIN_USER_START
   });
@@ -44,11 +49,11 @@ const loginUserSuccess = (dispatch, user) => {
   });
 };
 
-const loginSuccessRedirect = (dispatch, navigation) => {
-  navigation.dispatch({ type: LOGIN_REDIRECT });
+const loginSuccessRedirect = dispatch => {
+  dispatch({ type: LOGIN_REDIRECT });
 };
 
-const loginUserFail = (dispatch) => {
+const loginUserFail = dispatch => {
   dispatch({ type: LOGIN_USER_FAIL });
 };
 

@@ -2,9 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { Tabs } from '../config/router';
 import { LOGIN_REDIRECT } from '../actions/types';
 
-const initialState = Tabs.router.getStateForAction(
-  Tabs.router.getActionForPathAndParams('Login')
-);
+const initialState = Tabs.router.getStateForAction(Tabs.router.getActionForPathAndParams('Login'));
 
 const nav = (state = initialState, action) => {
   let nextState;
