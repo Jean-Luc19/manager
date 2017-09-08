@@ -5,6 +5,9 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Login'
+  };
   onEmailChange(text) {
     this.props.emailChanged(text);
   }

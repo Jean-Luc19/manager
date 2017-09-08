@@ -3,10 +3,8 @@ import { View, Text } from 'react-native';
 import { Header } from './common';
 
 class EmployeeList extends Component {
-  static navigationOptions = {
-    title: 'EmployeeList'
-  }
   render() {
+    console.log(this.props);
     return (
       <View>
         <Header headerText="Employee List" />
