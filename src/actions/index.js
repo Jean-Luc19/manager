@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER_START,
-  LOGIN_REDIRECT
+  LOGIN_REDIRECT,
+  ADD_EMPLOYEE
 } from './types';
 
 export const emailChanged = text => ({
@@ -17,6 +18,10 @@ export const emailChanged = text => ({
 export const passwordChanged = text => ({
   type: PASSWORD_CHANGED,
   payload: text
+});
+
+export const addEmployee = () => ({
+  type: ADD_EMPLOYEE
 });
 
 export const loginUser = ({ email, password }) => dispatch => {

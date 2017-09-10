@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Header } from './common';
+import { connect } from 'react-redux';
+import { Header, Button } from './common';
+import { addEmployee } from '../actions';
 
 class EmployeeList extends Component {
+  onAddPress() {
+    console.log('hello');
+    this.props.addEmployee();
+  }
   render() {
-    console.log(this.props);
+    console.log('component', this.props);
     return (
       <View>
-        <Header headerText="Employee List" />
         <Text>EmployeeList</Text>
         <Text>EmployeeList</Text>
         <Text>EmployeeList</Text>
@@ -17,5 +22,32 @@ class EmployeeList extends Component {
     );
   }
 }
+EmployeeList.navigationOptions = props => {
+  return {
+    title: 'Employee List',
+    headerRight: (
+      <Button
+        onPress={() => {
+          console.log('button', props);
+        }}
+      >
+        Add
+      </Button>
+    )
+  };
+};
 
-export default EmployeeList;
+export default connect(null, { addEmployee })(EmployeeList);
+// static navigationOptions = {
+//   title: 'Employee List',
+//   tabBarVisible: false,
+//   headerRight: (
+//     <Button
+//       onPress={() => {
+//         console.log(this.props);
+//       }}
+//     >
+//       Add
+//     </Button>
+//   )
+// };
