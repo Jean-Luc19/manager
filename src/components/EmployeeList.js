@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from './common';
 import { addEmployee } from '../actions';
 
 class EmployeeList extends Component {
@@ -16,7 +15,6 @@ class EmployeeList extends Component {
   });
 
   render() {
-    console.log('component', this.props.addEmployee);
     return (
       <View>
         <Text>EmployeeList</Text>

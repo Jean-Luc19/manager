@@ -12,14 +12,14 @@ export const EmployeeStack = StackNavigator(
       screen: EmployeeList,
       navigationOptions: {
         tabBarLabel: 'Employees',
-        tabBarIcon: ({ tintColor }) => <Icon name="list" size={35} color={tintColor} />
+        tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor} />
       }
     },
     EmployeeCreate: {
       screen: EmployeeCreate
     }
   },
-  { headerMode: 'float' }
+  { headerMode: 'float', tabBarVisible: false }
 );
 
 export const Tabs = TabNavigator(
