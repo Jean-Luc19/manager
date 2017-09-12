@@ -5,31 +5,16 @@ import { Button } from './common';
 import { addEmployee } from '../actions';
 
 class EmployeeList extends Component {
-  constructor(props) {
-    super(props);
-  }
-  static navigationOptions = {
+  static navigationOptions = props => ({
     title: 'Employee List',
     tabBarVisible: false,
-    headerRight: (
-      <Button
-        onPress={() => {
-          console.log('button', this.props);
-        }}
-      >
-        Add
-      </Button>
-    )
-  };
-  onAddPress() {
-    console.log('hello');
-    this.props.addEmployee();
-  }
+    headerRight: <Button onPress={() => props.navigation.dispatch(addEmployee())}>Add</Button>
+  });
+
   render() {
-    console.log('component', this.props);
+    console.log('component', this.props.addEmployee);
     return (
       <View>
-        <Text>EmployeeList</Text>
         <Text>EmployeeList</Text>
         <Text>EmployeeList</Text>
         <Text>EmployeeList</Text>
@@ -38,6 +23,8 @@ class EmployeeList extends Component {
     );
   }
 }
+
+export default connect()(EmployeeList);
 // EmployeeList.navigationOptions = props => {
 //   return {
 //     title: 'Employee List',
@@ -52,5 +39,3 @@ class EmployeeList extends Component {
 //     )
 //   };
 // };
-
-export default connect(null, { addEmployee })(EmployeeList);
