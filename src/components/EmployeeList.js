@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Header, Button } from './common';
+import { Button } from './common';
 import { addEmployee } from '../actions';
 
 class EmployeeList extends Component {
+  constructor(props) {
+    super(props);
+  }
+  static navigationOptions = {
+    title: 'Employee List',
+    tabBarVisible: false,
+    headerRight: (
+      <Button
+        onPress={() => {
+          console.log('button', this.props);
+        }}
+      >
+        Add
+      </Button>
+    )
+  };
   onAddPress() {
     console.log('hello');
     this.props.addEmployee();
@@ -22,32 +38,19 @@ class EmployeeList extends Component {
     );
   }
 }
-EmployeeList.navigationOptions = props => {
-  return {
-    title: 'Employee List',
-    headerRight: (
-      <Button
-        onPress={() => {
-          console.log('button', props);
-        }}
-      >
-        Add
-      </Button>
-    )
-  };
-};
+// EmployeeList.navigationOptions = props => {
+//   return {
+//     title: 'Employee List',
+//     headerRight: (
+//       <Button
+//         onPress={() => {
+//           console.log('button', props);
+//         }}
+//       >
+//         Add
+//       </Button>
+//     )
+//   };
+// };
 
 export default connect(null, { addEmployee })(EmployeeList);
-// static navigationOptions = {
-//   title: 'Employee List',
-//   tabBarVisible: false,
-//   headerRight: (
-//     <Button
-//       onPress={() => {
-//         console.log(this.props);
-//       }}
-//     >
-//       Add
-//     </Button>
-//   )
-// };
