@@ -6,7 +6,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER_START,
-  LOGIN_REDIRECT,
+  EMPLOYEE_LIST_REDIRECT,
   ADD_EMPLOYEE
 } from './types';
 
@@ -55,7 +55,7 @@ const loginUserSuccess = (dispatch, user) => {
 };
 
 const loginSuccessRedirect = dispatch => {
-  dispatch({ type: LOGIN_REDIRECT });
+  dispatch({ type: EMPLOYEE_LIST_REDIRECT });
 };
 
 const loginUserFail = dispatch => {

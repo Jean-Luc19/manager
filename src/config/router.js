@@ -10,10 +10,7 @@ export const EmployeeStack = StackNavigator(
   {
     Employee: {
       screen: EmployeeList,
-      navigationOptions: {
-        tabBarLabel: 'Employees',
-        tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor} />
-      }
+
     },
     EmployeeCreate: {
       screen: EmployeeCreate
@@ -25,7 +22,11 @@ export const EmployeeStack = StackNavigator(
 export const Tabs = TabNavigator(
   {
     Employees: {
-      screen: EmployeeStack
+      screen: EmployeeStack,
+      navigationOptions: {
+        tabBarLabel: 'Employees',
+        tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor} />
+      }
     },
     Login: {
       screen: LoginForm,
