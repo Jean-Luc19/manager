@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
-import { EMPLOYEE_UPDATE,
+import {
+  EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEE_LIST_REDIRECT,
   EMPLOYEES_FETCH_SUCCESS
@@ -14,19 +15,19 @@ export const employeeUpdate = ({ prop, value }) => ({
 export const employeesFetch = () => dispatch => {
   const { currentUser } = firebase.auth();
   if (currentUser) {
-    console.log('current user dispatch')
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
-    .on('value', snapshot => {
-      console.log('snapshot', snapshot.val())
-      dispatch({
-        type: EMPLOYEES_FETCH_SUCCESS,
-        payload: snapshot.val()
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/employees`)
+      .on('value', snapshot => {
+        dispatch({
+          type: EMPLOYEES_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
       });
-    });
   } else {
     dispatch({
       type: EMPLOYEE_CREATE
-    })
+    });
   }
 };
 
@@ -53,4 +54,3 @@ const employeeCreateRedirect = dispatch => {
     type: EMPLOYEE_LIST_REDIRECT
   });
 };
-
