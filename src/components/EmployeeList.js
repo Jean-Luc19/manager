@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { addEmployee } from '../actions';
+import { addEmployee, employeesFetch } from '../actions';
 
 class EmployeeList extends Component {
   static navigationOptions = props => ({
@@ -13,6 +13,10 @@ class EmployeeList extends Component {
       </TouchableOpacity>
     )
   });
+
+ componentWillMount() {
+    this.props.employeesFetch();
+  }
 
   render() {
     return (
@@ -26,18 +30,5 @@ class EmployeeList extends Component {
   }
 }
 
-export default connect()(EmployeeList);
-// EmployeeList.navigationOptions = props => {
-//   return {
-//     title: 'Employee List',
-//     headerRight: (
-//       <Button
-//         onPress={() => {
-//           console.log('button', props);
-//         }}
-//       >
-//         Add
-//       </Button>
-//     )
-//   };
-// };
+export default connect(null, { employeesFetch })(EmployeeList);
+
