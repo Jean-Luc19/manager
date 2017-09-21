@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_LIST_REDIRECT } from './types';
+import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_LIST_REDIRECT, EMPLOYEES_FETCH_SUCCESS } from './types';
 
 export const employeeUpdate = ({ prop, value }) => ({
   type: EMPLOYEE_UPDATE,
@@ -30,4 +30,12 @@ const employeeCreateRedirect = dispatch => {
   dispatch({
     type: EMPLOYEE_LIST_REDIRECT
   });
+};
+
+export const employeesFetch = () => dispatch => {
+  const currentUser = firebase.auth();
+  firebase.database().ref(`/users/${currentUser.uid}/employees`)
+    .on('value', snapshot => {
+      dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() })
+    })
 };

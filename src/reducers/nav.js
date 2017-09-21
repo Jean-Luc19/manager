@@ -3,7 +3,7 @@ import { Tabs } from '../config/router';
 import { EMPLOYEE_LIST_REDIRECT, ADD_EMPLOYEE } from '../actions/types';
 
 const initialState = Tabs.router.getStateForAction(
-  Tabs.router.getActionForPathAndParams('Employee')
+  Tabs.router.getActionForPathAndParams('Login')
 );
 
 const nav = (state = initialState, action) => {
